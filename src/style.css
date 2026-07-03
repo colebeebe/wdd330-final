@@ -28,11 +28,18 @@
 
 header {
   background-color: var(--cream-paper);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
   img {
-    width: 300px;
+    width: 120px;
+    padding: 15px 0;
   }
 }
 
+/* TODO: Remove palette styling */
 .palette {
   display: flex;
   justify-content: center;
