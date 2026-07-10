@@ -38,6 +38,32 @@ export async function setHeaderFooter() {
     (footerEl.querySelector('.copyright-info').innerHTML =
       `&copy;${year} Cole Beebe-Urbanawiz`);
 
-  renderWithTemplate(headerTemplateFn, headerEl);
-  renderWithTemplate(footerTemplateFn, footerEl, footerData, footerCallback);
+  await renderWithTemplate(headerTemplateFn, headerEl);
+  await renderWithTemplate(
+    footerTemplateFn,
+    footerEl,
+    footerData,
+    footerCallback,
+  );
+
+  setSearchFunctionality();
+}
+
+function setSearchFunctionality() {
+  const searchbar = document.querySelector('#searchbar');
+  const results = document.querySelector('.search-results');
+
+  let timeout;
+  searchbar.addEventListener('input', (e) => {
+    const query = e.target.value;
+    results.innerHTML = '';
+    for (let i = 0; i < 4; i++) {
+      results.innerHTML += `<a href="#">${query}</a>`;
+    }
+    if (query.length > 2) {
+      results.classList.remove('hide');
+    } else {
+      results.classList.add('hide');
+    }
+  });
 }
