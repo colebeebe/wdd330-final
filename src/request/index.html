@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Willowbend Library | Home</title>
+    <script type="module" src="/js/request.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="info-panel">
+        <h1>Not seeing what you're looking for?</h1>
+        <p>
+          We have a large network of libraries that we can borrow books from. If
+          we don't have it, maybe they will!
+        </p>
+        <p>
+          Let us know what book you'd like, and we'll see if we can connect you
+          with it! The more information you provide, the easier it will be for
+          us to find the book.
+        </p>
+      </div>
+
+      <form id="request-form">
+        <fieldset>
+          <legend>Personal Info</legend>
+          <div class="form-group">
+            <label for="name">Name*</label>
+            <input type="text" name="name" id="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" name="email" id="email" required />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Book Info</legend>
+          <div class="form-group">
+            <label for="title">Title*</label>
+            <input type="text" name="title" id="title" required />
+          </div>
+
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" />
+          </div>
+
+          <div class="form-group">
+            <label for="year">Year</label>
+            <input type="text" name="year" id="year" />
+          </div>
+
+          <div class="form-group">
+            <label for="publisher">Publisher</label>
+            <input type="text" name="publisher" id="publisher" />
+          </div>
+        </fieldset>
+
+        <div class="form-message">Required fields are denoted with a star</div>
+
+        <button type="submit">Request!</button>
+      </form>
+    </main>
+    <footer></footer>
+  </body>
+</html>
