@@ -78,9 +78,14 @@ async function setSearchFunctionality() {
   searchbar.addEventListener('input', (e) => {
     const query = e.target.value;
     results.innerHTML = '';
-    for (let i = 0; i < 4; i++) {
-      results.innerHTML += `<a href="#">${query}</a>`;
-    }
+
+    books
+      .filter((book) => book.name.toLowerCase().includes(query.toLowerCase()))
+      .forEach(
+        (book) =>
+          (results.innerHTML += `<a href="/books/index.html?id=${book._id}">${book.name}</a>`),
+      );
+
     if (query.length > 2) {
       results.classList.remove('hide');
     } else {
