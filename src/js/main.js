@@ -13,7 +13,7 @@ function bookCardTemplate(book) {
     <div class="book-card">
       <a href="/books/index.html?id=${book._id}">
         <div class="cover-container">
-          <img src="${covers[book.name.toLowerCase()]}" />
+          <img src="${covers[book.name.toLowerCase()]}" crossorigin="anonymous" />
         </div>
         <div class="book-info">
           <h3>${book.name}</h3>
