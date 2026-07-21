@@ -1,61 +1,31 @@
 import { setHeaderFooter, getParam } from './util';
+import { getBookById, getCovers } from './externalServices.mjs';
+
 import '../css/style.css';
 import '../css/books.css';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 setHeaderFooter();
-getBookInfo();
 
-async function getBookInfo() {
+async function init() {
+  const covers = getCovers();
   const id = getParam('id');
-
-  const dbQuery = {
-    query: `
-      query GetBook($id: ID!) {
-        book(id: $id) {
-          name
-          author {
-            firstName
-            lastName
-          }
-          publicationYear
-          genres
-          pageCount
-          format
-        }
-      }
-    `,
-    variables: {
-      id,
-    },
-  };
-
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(dbQuery),
-  };
-
-  const response = await fetch(apiUrl + '/graphql', options);
-  const data = await response.json();
-
-  const book = data.data.book;
+  const book = await getBookById(id);
 
   document.querySelector('.title').textContent = book.name;
+  document.querySelector('.format').textContent = book.format;
   document.querySelector('.author').textContent =
     `${book.author.firstName} ${book.author.lastName}`;
+  document.querySelector('.pages').textContent = `Pages: ${book.pageCount}`;
   document.querySelector('.year').textContent = book.publicationYear;
+  document.querySelector('.publisher').textContent = book.publisher;
+  const genresEl = document.querySelector('.genres');
+  book.genres.forEach((genre) => (genresEl.innerHTML += `<li>${genre}</li>`));
 
-  const genres = document.querySelector('.genres');
-  genres.innerHTML = '';
-  book.genres.forEach(
-    (g) => (genres.innerHTML += `<div class="genre-tag">${g}</div>`),
-  );
-
-  document.querySelector('.format').textContent = `Format: ${book.format}`;
-  document.querySelector('.page-count').textContent =
-    `Pages: ${book.pageCount}`;
+  const cover = document.querySelector('.cover');
+  cover.src = covers[book.name.toLowerCase()];
+  cover.alt = `cover for ${book.name}`;
 }
+
+init();
