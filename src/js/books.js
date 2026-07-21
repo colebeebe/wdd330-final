@@ -1,12 +1,13 @@
 import { setHeaderFooter, getParam } from './util';
+import { getBookById, getCovers } from './externalServices.mjs';
 
 import '../css/style.css';
 import '../css/books.css';
-import { getBookById } from './externalServices.mjs';
 
 setHeaderFooter();
 
 async function init() {
+  const covers = getCovers();
   const id = getParam('id');
   const book = await getBookById(id);
 
@@ -19,6 +20,10 @@ async function init() {
   document.querySelector('.publisher').textContent = book.publisher;
   const genresEl = document.querySelector('.genres');
   book.genres.forEach((genre) => (genresEl.innerHTML += `<li>${genre}</li>`));
+
+  const cover = document.querySelector('.cover');
+  cover.src = covers[book.name.toLowerCase()];
+  cover.alt = `cover for ${book.name}`;
 }
 
 init();
