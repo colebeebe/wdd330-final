@@ -1,5 +1,19 @@
 import { getBookList } from './externalServices.mjs';
 
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
+}
+
 async function renderWithTemplate(
   templateFn,
   parentElement,
@@ -56,7 +70,6 @@ async function setSearchFunctionality() {
   const results = document.querySelector('.search-results');
 
   const books = await getBookList();
-  console.log(books);
 
   let timeout;
   searchbar.addEventListener('input', (e) => {

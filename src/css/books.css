@@ -3,4 +3,58 @@ main {
   margin: 0 auto;
   display: flex;
   gap: 20px;
+
+  .book-info {
+    .top-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+
+      .format {
+        background-color: var(--lantern-gold__alt);
+        border: 2px solid var(--lantern-gold);
+        padding: 2px 15px;
+        border-radius: 999px;
+        text-transform: capitalize;
+        color: #9e7506;
+        font-weight: bold;
+      }
+    }
+
+    .genres {
+      list-style-type: none;
+      display: flex;
+      gap: 10px;
+
+      li {
+        background-color: var(--willow-green__alt);
+        padding: 2px 15px;
+        border: 2px solid var(--willow-green);
+        border-radius: 999px;
+        text-transform: capitalize;
+        font-size: 0.9rem;
+        color: #2c5e36;
+        font-weight: bold;
+      }
+    }
+
+    button {
+      background-color: var(--soft-bark-brown);
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: white;
+      font-family: var(--accent-font);
+      padding: 3px 50px;
+      margin-top: 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+
+      &:hover {
+        background-color: var(--soft-bark-brown__alt);
+      }
+    }
+  }
 }
