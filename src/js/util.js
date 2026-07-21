@@ -62,9 +62,6 @@ export async function setHeaderFooter() {
     footerCallback,
   );
 
-  const loginLink = document.querySelector('.login-link');
-  loginLink.href = apiUrl + '/auth/google';
-
   setSearchFunctionality();
 }
 
