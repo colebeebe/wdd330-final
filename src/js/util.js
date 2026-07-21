@@ -1,3 +1,5 @@
+import { getBookList } from './externalServices.mjs';
+
 async function renderWithTemplate(
   templateFn,
   parentElement,
@@ -49,17 +51,25 @@ export async function setHeaderFooter() {
   setSearchFunctionality();
 }
 
-function setSearchFunctionality() {
+async function setSearchFunctionality() {
   const searchbar = document.querySelector('#searchbar');
   const results = document.querySelector('.search-results');
+
+  const books = await getBookList();
+  console.log(books);
 
   let timeout;
   searchbar.addEventListener('input', (e) => {
     const query = e.target.value;
     results.innerHTML = '';
-    for (let i = 0; i < 4; i++) {
-      results.innerHTML += `<a href="#">${query}</a>`;
-    }
+
+    books
+      .filter((book) => book.name.toLowerCase().includes(query.toLowerCase()))
+      .forEach(
+        (book) =>
+          (results.innerHTML += `<a href="/books/index.html?id=${book._id}">${book.name}</a>`),
+      );
+
     if (query.length > 2) {
       results.classList.remove('hide');
     } else {
